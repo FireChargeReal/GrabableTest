@@ -38,13 +38,13 @@ export default class HelloWorld {
 			firstPrefabFrom: cubeData,
 			// Also apply the following generic actor properties.
 			actor: {
+				grabbable: true,
 				name: 'Altspace button',
 				// Parent the glTF model to the text actor, so the transform is relative to the text
 				parentId: menu.id,
-				grabbable: true,
 				transform: {
 					local: {
-						position: { x: 0, y: -1, z: 0 },
+						position: { x: 0, y: 0, z: 0 },
 						scale: { x: 0.4, y: 0.4, z: 0.4 }
 					}
 				}
@@ -57,7 +57,3 @@ export default class HelloWorld {
 		// Button behaviors have two pairs of events: hover start/stop, and click start/stop.
 	}
 }		
-
-	
-
-
