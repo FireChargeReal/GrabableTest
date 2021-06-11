@@ -41,6 +41,7 @@ export default class HelloWorld {
 				name: 'Altspace button',
 				// Parent the glTF model to the text actor, so the transform is relative to the text
 				parentId: menu.id,
+				grabbable: true,
 				transform: {
 					local: {
 						position: { x: 0, y: -1, z: 0 },
@@ -50,53 +51,12 @@ export default class HelloWorld {
 			}
 		});
 
-		this.buzzerSound = this.assets.createSound(
-			'alarmSound',
-			{ uri: 'Gameboy Startup Sound.wav' });
 
 
 		// Set up cursor interaction. We add the input behavior ButtonBehavior to the button.
 		// Button behaviors have two pairs of events: hover start/stop, and click start/stop.
-		const buttonBehavior = this.button.setBehavior(MRE.ButtonBehavior);
+		
 
-		// Trigger the grow/shrink animations on hover.
-		buttonBehavior.onHover('enter', () => {
-			// use the convenience function "AnimateTo" instead of creating the animation data in advance
-			MRE.Animation.AnimateTo(this.context, this.button, {
-				destination: { transform: { local: { scale: { x: 0.6, y: 0.6, z: 0.6 } } } },
-				duration: 0.3,
-				easing: MRE.AnimationEaseCurves.EaseOutSine
-			});
-		});
-		buttonBehavior.onHover('exit', () => {
-			MRE.Animation.AnimateTo(this.context, this.button, {
-				destination: { transform: { local: { scale: { x: 0.4, y: 0.4, z: 0.4 } } } },
-				duration: 0.3,
-				easing: MRE.AnimationEaseCurves.EaseOutSine
-			});
-		});
-
-		// When clicked, do a 360 sideways.
-		buttonBehavior.onClick(_ => {
-			
-			this.startSound();
-			MRE.Animation.AnimateTo(this.context, this.button, {
-				destination: { transform: { local: { scale: { x: 2, y: 5, z: 2 } } } },
-				duration: 0.7,
-				easing: MRE.AnimationEaseCurves.EaseOutSine
-			});
-			MRE.Animation.AnimateTo(this.context, this.button, {
-				destination: { transform: { local: { scale: { x: 0.4, y: 0.4, z: 0.4 } } } },
-				duration: 0.3,
-				easing: MRE.AnimationEaseCurves.EaseOutSine
-			});
-		});
-
-	}
-	private startSound = () => {
-		const options: MRE.SetAudioStateOptions = { volume: 0.4 };
-		options.time = 0;
-		this.button.startSound(this.buzzerSound.id, options);
-	}
+	
 
 }
